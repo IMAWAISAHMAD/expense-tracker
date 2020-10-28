@@ -1,7 +1,13 @@
 import React from 'react'
 import {Typography,Button,Dialog,DialogTitle,DialogContent,DialogContentText,Divider} from '@material-ui/core'
 
-export default function DialogForm({isOpen,setIsOpen,children,contentText,title}) {
+export default function DialogForm({isOpen,setIsOpen,children,contentText,title,setEditRecord}) {
+    
+    const handleClose =() => {
+        setEditRecord(null);
+        setIsOpen(false);
+    }
+    
     return (
         <Dialog open={isOpen}>
             <DialogTitle>
@@ -12,7 +18,7 @@ export default function DialogForm({isOpen,setIsOpen,children,contentText,title}
                     <Button 
                     variant='outlined' 
                     color='secondary' 
-                    onClick={()=>setIsOpen(false)}>
+                    onClick={handleClose}>
                         X
                     </Button>
                 </div>
