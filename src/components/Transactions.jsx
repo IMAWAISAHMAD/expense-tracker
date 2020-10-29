@@ -6,13 +6,14 @@ import Transaction from './Transaction'
 import AddTransaction from '../components/AddTransaction'
 import Dialog from '../components/controls/Dialog'
 import AddCircleIcon from '@material-ui/icons/AddCircle'
-
+import Notification from './controls/Notification'
 
 export default function Transactions() {
 
     const {transactions,addTransaction,deleteTransaction,updateTransaction} = useContext(AppContext);
     const [editRecord,setEditRecord] = useState(null);
     const [isOpen,setIsOpen] = useState(false);
+    const [notify,setNotify] = useState({isOpen:false,type:'',title:'',message:''});
     
    
    
@@ -29,10 +30,22 @@ export default function Transactions() {
             }
             
             addTransaction(newTransaction)
+            setNotify({
+                isOpen:true,
+                type:'success',
+                title:'Transaction',
+                message:'Transaction added successfully'
+            })
         }
         else
         {
             updateTransaction(values)
+            setNotify({
+                isOpen:true,
+                type:'info',
+                title:'Transaction',
+                message:'Transaction updated successfully'
+            })
         }  
         handleReset();
         setIsOpen(false);   
@@ -73,10 +86,16 @@ export default function Transactions() {
                             transaction={transaction} 
                             id={transaction.id} 
                             deleteTransaction={deleteTransaction} 
-                            handleEdit={recordForEdit}/>
+                            handleEdit={recordForEdit}
+                            setNotify={setNotify}
+                            />
                     ))}
                 </Grid>
             </Grid>
+            <Notification
+            notify={notify}
+            setNotify={setNotify}
+            />
         </div>
     )
 }

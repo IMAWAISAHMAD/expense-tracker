@@ -14,10 +14,29 @@ const useStyles = makeStyles(theme=>({
     }
 }))
 
-export default function Transaction({id,transaction,deleteTransaction,handleEdit}) {
-    const [confirmDialog,setConfirmDialog] = useState({isOpen:false,title:'',subTitle:'',})
-    console.log(confirmDialog);
+
+
+export default function Transaction({id,transaction,deleteTransaction,handleEdit,setNotify}) {
     const classes = useStyles();
+    const [confirmDialog,setConfirmDialog] = useState({isOpen:false,title:'',subTitle:'',})
+
+    const handleDelete = (id) => {
+        setConfirmDialog({
+            isOpen:true,
+            title:'Are you sure you want to delete this transaction',
+            subTitle:'This can not be Undo',
+            onConfirm:()=>{
+                deleteTransaction(id)
+                setNotify({
+                    isOpen:true,
+                    type:'error',
+                    title:'Transaction',
+                    message:'Transaction Deleted Successfully' 
+                 })
+            }
+        })
+       
+    }
     return (
     <div className={classes.root}>
         <List key={id} dense > 
@@ -56,17 +75,7 @@ export default function Transaction({id,transaction,deleteTransaction,handleEdit
                         <EditIcon/>
                     </IconButton>
                     <IconButton
-                     onClick={
-                        ()=>setConfirmDialog({
-                        isOpen:true,
-                        title:'Are you sure you want to delete this record',
-                        subTitle:'This can not be Undo',
-                        onConfirm:()=> deleteTransaction(transaction.id)
-                        })
-                    }
-                    /* onClick={
-                        ()=>deleteTransaction(id)
-                    } */
+                     onClick={()=>handleDelete(id)}
                     >
                         <DeleteForeverIcon/>
                     </IconButton>
