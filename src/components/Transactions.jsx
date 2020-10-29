@@ -13,6 +13,7 @@ export default function Transactions() {
     const {transactions,addTransaction,deleteTransaction,updateTransaction} = useContext(AppContext);
     const [editRecord,setEditRecord] = useState(null);
     const [isOpen,setIsOpen] = useState(false);
+    
    
    
     const addOrUpdate = (values,handleReset) => {
