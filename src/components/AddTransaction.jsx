@@ -35,9 +35,9 @@ export default function AddTransaction({addOrUpdate,editRecord}) {
         if('type' in fieldValues)    
             temp.type = fieldValues.type.length !==0 ?'':'Transaction Type is required';
         if('desc' in fieldValues)    
-           temp.desc = fieldValues.desc.length>=5 ?'':'Description is required and must be minimum five cracters';
+           temp.desc = fieldValues.desc.length>=3 && fieldValues.desc.length<=15 ?'':'Description is required & must be between 3 to 15 cracters';
         if('amount' in fieldValues)     
-            temp.amount = parseInt(fieldValues.amount,10)>0 ?'':'Amount is required must be greater than zero';
+            temp.amount = parseInt(fieldValues.amount,10)>0 ?'':'Amount is required & must be greater than zero';
         setErrors({
             ...temp
         })
