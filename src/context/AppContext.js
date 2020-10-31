@@ -30,6 +30,7 @@ export const AppProvider = ({children}) => {
 
     const updateTransaction = (transaction) => {
         dispatch({type:'UPDATE_TRANSACTION',payload:transaction}) 
+        console.log('Update transaction called',transaction);
      }
  
     return(
