@@ -65,16 +65,16 @@ export default function Transactions() {
                 <Grid item xs={12} sm={12} md={12}>
                 <Button variant='outlined' color='primary' onClick={()=>setIsOpen(true)} startIcon={<AddCircleIcon/>}>
                     Add Transaction
-                </Button>
                 <Dialog
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
-                title='Add Transaction'
+                title='Transaction Entry Form'
                 contentText='Enter Transaction Details'
                 setEditRecord={setEditRecord}
                 >
-                  <AddTransaction addOrUpdate={addOrUpdate} editRecord={editRecord}/>
-                </Dialog>    
+                <AddTransaction addOrUpdate={addOrUpdate} editRecord={editRecord}/>
+                </Dialog>
+                </Button>    
                 </Grid>
                 <Grid item  xs={12} sm={12} md={12}>
                     {transactions.length>0 ?
@@ -98,6 +98,7 @@ export default function Transactions() {
             notify={notify}
             setNotify={setNotify}
             />
+
         </div>
     )
 }
