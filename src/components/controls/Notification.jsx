@@ -1,6 +1,7 @@
 import React from 'react'
 import { Snackbar,makeStyles } from '@material-ui/core';
 import { Alert,AlertTitle } from '@material-ui/lab';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles(theme=>({
     root:{
@@ -26,4 +27,8 @@ export default function Notification({notify,setNotify}) {
             </Alert>
         </Snackbar>
     )
+}
+Notification.propTypes={
+    notify:PropTypes.object.isRequired,
+    setNotify:PropTypes.func.isRequired
 }

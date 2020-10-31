@@ -1,5 +1,6 @@
 import React from 'react'
 import {Typography,Button,Dialog,DialogTitle,DialogContent,DialogContentText,Divider} from '@material-ui/core'
+import PropTypes from 'prop-types';
 
 export default function DialogForm({isOpen,setIsOpen,children,contentText,title,setEditRecord}) {
     
@@ -33,3 +34,12 @@ export default function DialogForm({isOpen,setIsOpen,children,contentText,title,
         </Dialog>
     )
 }
+Dialog.propTypes = {
+children: PropTypes.array.isRequired,
+isOpen:PropTypes.bool,
+setIsOpen:PropTypes.func,
+contentText:PropTypes.string,
+title:PropTypes.string,
+setEditRecord:PropTypes.func 
+}
+
