@@ -4,6 +4,7 @@ import {useForm,Form} from './Form/useForm'
 import Input from '../components/controls/Input'
 import Select from '../components/controls/Select'
 import Button from '../components/controls/Button'
+import PropTypes from 'prop-types';
 
 
 
@@ -129,4 +130,9 @@ export default function AddTransaction({addOrUpdate,editRecord}) {
         </Form>  
     </> 
     )
+}
+
+AddTransaction.propTypes = {
+    addOrUpdate: PropTypes.func.isRequired ,
+    editRecord:  PropTypes.object || null
 }

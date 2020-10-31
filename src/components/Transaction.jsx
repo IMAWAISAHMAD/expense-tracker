@@ -4,6 +4,7 @@ import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet'
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteCofirmation from './controls/DeleteConfirmation';
 import DeleteIcon from '@material-ui/icons/Delete';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles(theme=>({
     root: {
@@ -18,8 +19,8 @@ const useStyles = makeStyles(theme=>({
 
 
 
-export default function Transaction({id,transaction,deleteTransaction,handleEdit,setNotify}) {
-    const {type,desc,date,amount} = transaction;
+export default function Transaction({transaction,deleteTransaction,handleEdit,setNotify}) {
+    const {id,type,desc,date,amount} = transaction;
     const classes = useStyles();
     const [confirmDialog,setConfirmDialog] = useState({isOpen:false,title:'',subTitle:'',})
 
@@ -84,4 +85,11 @@ export default function Transaction({id,transaction,deleteTransaction,handleEdit
         />
         </div>
     )
+}
+
+Transaction.propTypes = {
+    transaction:PropTypes.object.isRequired,
+    deleteTransaction:PropTypes.func.isRequired,
+    handleEdit:PropTypes.func.isRequired,
+    setNotify:PropTypes.func.isRequired
 }

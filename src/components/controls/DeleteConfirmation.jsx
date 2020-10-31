@@ -1,7 +1,8 @@
 import React from 'react'
 import {Dialog,DialogContent,DialogTitle,DialogActions,Typography,IconButton,makeStyles} from '@material-ui/core'
 import NotListedLocationIcon from '@material-ui/icons/NotListedLocation';
-import Button from './Button'
+import Button from './Button';
+import PropTypes from 'prop-types';
 
 
 const useStyles = makeStyles(theme=>({
@@ -56,4 +57,9 @@ export default function DeleteConfirmation({confirmDialog,setConfirmDialog}) {
             </DialogActions>
         </Dialog>
     )
+}
+
+DeleteConfirmation.propTypes = {
+    confirmDialog:PropTypes.object.isRequired,
+    setConfirmDialog:PropTypes.func.isRequired
 }

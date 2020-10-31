@@ -69,7 +69,7 @@ export default function Transactions() {
                 <Dialog
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
-                title='Add Transaction'
+                title='Transaction Entry Form'
                 contentText='Enter Transaction Details'
                 setEditRecord={setEditRecord}
                 >
@@ -82,7 +82,6 @@ export default function Transactions() {
                             <Transaction 
                             key={transaction.id} 
                             transaction={transaction} 
-                            id={transaction.id} 
                             deleteTransaction={deleteTransaction} 
                             handleEdit={recordForEdit}
                             setNotify={setNotify}
