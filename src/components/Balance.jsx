@@ -26,8 +26,8 @@ export default function Balance() {
                         <Typography variant='h5' color='primary'>
                             INCOME
                         </Typography>
-                        <Typography>
-                           {income}
+                        <Typography variant='h3'>
+                           {income.toLocaleString()}
                         </Typography>
                     </CardContent>
                 </Card>
@@ -38,8 +38,8 @@ export default function Balance() {
                         <Typography variant='h5' color='secondary'>
                             EXPENSE
                         </Typography>
-                        <Typography>
-                           {expense}
+                        <Typography variant='h3'>
+                           {expense.toLocaleString()}
                         </Typography>
                     </CardContent>
                 </Card>
@@ -50,8 +50,8 @@ export default function Balance() {
                         <Typography variant='h5' color='textPrimary'>
                             BALANCE
                         </Typography>
-                        <Typography>
-                           {balance}
+                        <Typography variant='h3'>
+                           {balance.toLocaleString()}
                         </Typography>
                     </CardContent>
                 </Card>

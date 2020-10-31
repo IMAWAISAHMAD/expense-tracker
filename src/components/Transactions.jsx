@@ -1,5 +1,5 @@
 import React,{useContext,useState} from 'react'
-import {Button,Grid} from '@material-ui/core'
+import {Button,Grid,Typography} from '@material-ui/core'
 import {AppContext} from '../context/AppContext'
 import Balance from './Balance'
 import Transaction from './Transaction'
@@ -15,11 +15,9 @@ export default function Transactions() {
     const [isOpen,setIsOpen] = useState(false);
     const [notify,setNotify] = useState({isOpen:false,type:'',title:'',message:''});
     
-   
-   
+    
     const addOrUpdate = (values,handleReset) => {
         const {id,date,type,desc,amount} = values;
-        console.log(typeof(amount));
         if(id===0){
             const newTransaction = {
                 id:transactions.length+1,
@@ -79,7 +77,7 @@ export default function Transactions() {
                 </Dialog>    
                 </Grid>
                 <Grid item  xs={12} sm={12} md={12}>
-                    {transactions.length>0 &&
+                    {transactions.length>0 ?
                         transactions.map(transaction=>(
                             <Transaction 
                             key={transaction.id} 
@@ -89,7 +87,11 @@ export default function Transactions() {
                             handleEdit={recordForEdit}
                             setNotify={setNotify}
                             />
-                    ))}
+                    )):
+                    <div style={{marginTop:'24px'}}>
+                        <Typography variant='h5' color='primary'>No Transactions Found</Typography>
+                    </div>
+                    }
                 </Grid>
             </Grid>
             <Notification

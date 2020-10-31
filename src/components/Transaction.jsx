@@ -1,22 +1,25 @@
 import React,{useState} from 'react'
-import {Grid,makeStyles,Divider,List,ListItem,ListItemAvatar,Avatar,ListItemSecondaryAction,ListItemText,IconButton} from '@material-ui/core'
+import {makeStyles,List,ListItem,ListItemAvatar,Avatar,ListItemSecondaryAction,ListItemText,IconButton,Typography} from '@material-ui/core'
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet'
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteCofirmation from './controls/DeleteConfirmation';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles(theme=>({
-    root:{
-        flexGrow:1,
-        width: '100%',
-        maxWidth: 750,
-        margin:'auto', 
-    }
+    root: {
+        flexGrow: 1,
+        maxWidth: 500,
+        margin:'auto'
+      },
+      demo: {
+        backgroundColor: theme.palette.background.paper,
+      }
 }))
 
 
 
 export default function Transaction({id,transaction,deleteTransaction,handleEdit,setNotify}) {
+    const {type,desc,date,amount} = transaction;
     const classes = useStyles();
     const [confirmDialog,setConfirmDialog] = useState({isOpen:false,title:'',subTitle:'',})
 
@@ -38,59 +41,47 @@ export default function Transaction({id,transaction,deleteTransaction,handleEdit
        
     }
     return (
-    <div className={classes.root}>
-        <List key={id} dense > 
-            <ListItem>
-            <Grid container>
-                <Grid item md={2}>
-                    <ListItemAvatar>
-                        <Avatar>
-                            <AccountBalanceWalletIcon/>
-                        </Avatar>
-                    </ListItemAvatar>
-                </Grid>
-                <Grid item md={8} >
-                <ListItemText>
-                <Grid container spacing={10}>
-                        <Grid item>
-                            {transaction.date}
-                        </Grid>
-                        <Grid item>
-                            {transaction.type}
-                        </Grid>
-                        <Grid item>
-                            {transaction.desc}
-                        </Grid>
-                        <Grid item>
-                            {transaction.amount}
-                        </Grid>
-                    </Grid>
-                </ListItemText>
-                </Grid>
-                <Grid item md={2}>
-                <ListItemSecondaryAction>
-                    <IconButton
-                    onClick={()=>handleEdit(transaction)}
-                    >
-                        <EditIcon/>
-                    </IconButton>
-                    <IconButton
-                     onClick={()=>handleDelete(id)}
-                    >
-                        <DeleteForeverIcon/>
-                    </IconButton>
-                </ListItemSecondaryAction>
-                </Grid>
-            </Grid>
-            </ListItem>
-            <Divider/>
-        </List>
+        <div className={classes.root}>
+            <div className={classes.demo}>
+                <List dense>
+                    <ListItem>
+                        <ListItemAvatar>
+                            <Avatar>
+                                <AccountBalanceWalletIcon/>
+                            </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText primary={desc} secondary={date}/>
+                        {type==='income'?
+                        (
+                            <ListItemText disableTypography primary={<Typography variant='subtitle1' color='primary'>{parseInt(amount).toLocaleString()}</Typography>}/>
+                        ):
+                        (
+                            <ListItemText disableTypography primary={<Typography variant='subtitle1' color='secondary'>{parseInt(amount).toLocaleString()}</Typography>}/>
+                        )   
+                        }
+                        <ListItemSecondaryAction>
+                            <IconButton 
+                            edge="end" 
+                            aria-label="delete"
+                            onClick={()=>handleEdit(transaction)}
+                            >
+                                <EditIcon />
+                            </IconButton>
+                            <IconButton
+                            edge="end" 
+                            aria-label="delete"
+                            onClick={()=>handleDelete(id)}
+                            >
+                                <DeleteIcon/>
+                            </IconButton>
+                        </ListItemSecondaryAction>
+                    </ListItem>
+                </List>
+             </div>
         <DeleteCofirmation
         confirmDialog={confirmDialog}
         setConfirmDialog={setConfirmDialog}
         />
-    </div>
+        </div>
     )
 }
-
-
